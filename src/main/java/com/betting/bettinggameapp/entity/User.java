@@ -1,14 +1,22 @@
 package com.betting.bettinggameapp.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull
+    @Size(min=1, max=25)
     private String firstName;
+    @NotNull
+    @Size(min=1, max=25)
     private String lastName;
+    @NotNull
+    @Size(min=1, max=25)
     private String nickname;
 
     public long getId() {

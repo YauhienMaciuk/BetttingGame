@@ -1,6 +1,7 @@
 package com.betting.bettinggameapp.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -9,10 +10,13 @@ public class GameResult {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull(message = "winAmount value must not be null")
     private BigDecimal winAmount;
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     @OneToMany
+    @NotNull
     private List<Bet> bets;
 
     public long getId() {

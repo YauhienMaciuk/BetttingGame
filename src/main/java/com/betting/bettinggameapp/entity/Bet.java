@@ -3,6 +3,7 @@ package com.betting.bettinggameapp.entity;
 import com.betting.bettinggameapp.casino.Slot;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -11,13 +12,19 @@ public class Bet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+    @NotNull
     private BigDecimal betAmount;
+    @NotNull
     private BigDecimal winAmount;
+    @NotNull
     private LocalDateTime createdDateTime;
+    @NotNull
     private Slot playedSlot;
-    private boolean freeBet;
+    @NotNull
+    private Boolean freeBet;
 
     public long getId() {
         return id;

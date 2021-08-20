@@ -1,14 +1,18 @@
 package com.betting.bettinggameapp.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
 public class AccountState {
     @Id
     private long id;
+    @NotNull
     private BigDecimal balance;
+    @NotNull
     private BigDecimal initialAmount;
+    @NotNull
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private User user;

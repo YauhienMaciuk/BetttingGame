@@ -3,6 +3,7 @@ package com.betting.bettinggameapp.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,9 +16,9 @@ public class GameResult {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-    @OneToMany
+    @OneToMany(mappedBy = "gameResult", cascade = CascadeType.ALL, orphanRemoval = true)
     @NotNull
-    private List<Bet> bets;
+    private List<Bet> bets = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -49,5 +50,15 @@ public class GameResult {
 
     public void setBets(List<Bet> bets) {
         this.bets = bets;
+    }
+
+    public void addBet(Bet bet) {
+        bets.add(bet);
+        bet.setGameResult(this);
+    }
+
+    public void removeBet(Bet bet) {
+        bets.remove(bet);
+        bet.setGameResult(null);
     }
 }

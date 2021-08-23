@@ -1,9 +1,14 @@
 package com.betting.bettinggameapp.entity;
 
-import com.betting.bettinggameapp.casino.Slot;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
+import com.betting.bettinggameapp.casino.Slot;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -15,6 +20,8 @@ public class Bet {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private GameResult gameResult;
     @NotNull
     private BigDecimal betAmount;
     @NotNull
@@ -40,6 +47,14 @@ public class Bet {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public GameResult getGameResult() {
+        return gameResult;
+    }
+
+    public void setGameResult(GameResult gameResult) {
+        this.gameResult = gameResult;
     }
 
     public BigDecimal getBetAmount() {
@@ -74,11 +89,11 @@ public class Bet {
         this.playedSlot = playedSlot;
     }
 
-    public boolean isFreeBet() {
+    public Boolean isFreeBet() {
         return freeBet;
     }
 
-    public void setFreeBet(boolean freeBet) {
+    public void setFreeBet(Boolean freeBet) {
         this.freeBet = freeBet;
     }
 }

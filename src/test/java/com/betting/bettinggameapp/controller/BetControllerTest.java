@@ -62,7 +62,7 @@ public class BetControllerTest {
         user.setNickname("ymatsiuk");
 
         Bet bet1 = new Bet();
-        bet1.setId(2);
+        bet1.setId(2L);
         bet1.setUser(user);
         bet1.setPlayedSlot(Slot.WIN_TWENTY_EURO);
         bet1.setFreeBet(false);
@@ -71,7 +71,7 @@ public class BetControllerTest {
         bet1.setBetAmount(BigDecimal.TEN);
 
         Bet bet2 = new Bet();
-        bet2.setId(3);
+        bet2.setId(3L);
         bet2.setUser(user);
         bet2.setPlayedSlot(Slot.LOSE);
         bet2.setFreeBet(false);
@@ -114,10 +114,10 @@ public class BetControllerTest {
         user.setFirstName("Yauheni");
         user.setLastName("Matsiuk");
         user.setNickname("ymatsiuk");
-        user.setId(1);
+        user.setId(1L);
 
         Bet bet = new Bet();
-        bet.setId(2);
+        bet.setId(2L);
         bet.setUser(user);
         bet.setPlayedSlot(Slot.WIN_TWENTY_EURO);
         bet.setFreeBet(false);
@@ -129,10 +129,10 @@ public class BetControllerTest {
         accountState.setInitialAmount(BigDecimal.valueOf(5000));
         accountState.setBalance(BigDecimal.valueOf(5000));
         accountState.setUser(user);
-        accountState.setId(2);
+        accountState.setId(2L);
 
         GameResult gameResult = new GameResult();
-        gameResult.setId(3);
+        gameResult.setId(3L);
         gameResult.setBets(Arrays.asList(bet));
         gameResult.setWinAmount(bet.getWinAmount());
         gameResult.setUser(user);

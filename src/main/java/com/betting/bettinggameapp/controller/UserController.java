@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -30,7 +30,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "Could not find the User by id", content = @Content)
     })
     @GetMapping("/{id}")
-    public User findById(@NotBlank @PathVariable long id) {
+    public User findById(@NotBlank @PathVariable Long id) {
         return userService.findById(String.valueOf(id));
     }
 

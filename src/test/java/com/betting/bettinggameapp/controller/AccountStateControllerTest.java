@@ -34,13 +34,13 @@ public class AccountStateControllerTest {
     @Test
     void findAccountState() throws Exception {
         User user = new User();
-        user.setId(1);
+        user.setId(1L);
         user.setFirstName("Yauheni");
         user.setLastName("Matsiuk");
         user.setNickname("ymatsiuk");
 
         AccountState accountState = new AccountState();
-        accountState.setId(2);
+        accountState.setId(2L);
         accountState.setInitialAmount(BigDecimal.valueOf(5000));
         accountState.setBalance(BigDecimal.valueOf(5000));
         accountState.setUser(user);

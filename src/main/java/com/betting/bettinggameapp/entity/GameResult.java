@@ -10,7 +10,7 @@ import java.util.List;
 public class GameResult {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     @NotNull(message = "winAmount value must not be null")
     private BigDecimal winAmount;
     @NotNull
@@ -20,11 +20,11 @@ public class GameResult {
     @NotNull
     private List<Bet> bets = new ArrayList<>();
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

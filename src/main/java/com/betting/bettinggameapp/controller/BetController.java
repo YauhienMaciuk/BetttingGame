@@ -30,7 +30,7 @@ public class BetController {
                             array = @ArraySchema (schema = @Schema(implementation = BetDto.class)))}),
             @ApiResponse(responseCode = "404", description = "Could not find Bets by userId", content = @Content)
     })
-    @GetMapping("/user/{userId}/bet")
+    @GetMapping("/users/{userId}/bets")
     public List<BetDto> findAllByUserId(@PathVariable Long userId) {
         return betService.findAllBetsByUserId(userId);
     }
@@ -42,7 +42,7 @@ public class BetController {
                             schema = @Schema(implementation = GameResultDto.class))}),
             @ApiResponse(responseCode = "400", description = "The request body contains invalid data", content = @Content)
     })
-    @PostMapping("/bet")
+    @PostMapping("/bets")
     public GameResultDto placeBet(@Valid @RequestBody BetDto betDto) {
         return betService.placeBet(betDto);
     }

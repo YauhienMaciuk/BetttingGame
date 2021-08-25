@@ -30,7 +30,7 @@ public class GameResultController {
                             array = @ArraySchema(schema = @Schema(implementation = GameResultDto.class)))}),
             @ApiResponse(responseCode = "404", description = "Could not find GameResults by userId", content = @Content)
     })
-    @GetMapping("/user/{userId}/game-result")
+    @GetMapping("/users/{userId}/game-results")
     public List<GameResultDto> findAllByUserId(@PathVariable Long userId) {
         return gameResultService.findAllGameResultDtosByUserId(userId);
     }

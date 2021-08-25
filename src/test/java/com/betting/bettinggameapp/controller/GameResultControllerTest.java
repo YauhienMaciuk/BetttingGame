@@ -40,13 +40,13 @@ public class GameResultControllerTest {
     @Test
     void findAllByUserIdTest() throws Exception {
         User user = new User();
-        user.setId(1);
+        user.setId(1L);
         user.setFirstName("Yauheni");
         user.setLastName("Matsiuk");
         user.setNickname("ymatsiuk");
 
         Bet bet = new Bet();
-        bet.setId(2);
+        bet.setId(2L);
         bet.setUser(user);
         bet.setPlayedSlot(Slot.WIN_TWENTY_EURO);
         bet.setFreeBet(false);
@@ -56,7 +56,7 @@ public class GameResultControllerTest {
 
         List<GameResult> gameResults = new ArrayList<>();
         GameResult gameResult = new GameResult();
-        gameResult.setId(3);
+        gameResult.setId(3L);
         gameResult.setWinAmount(BigDecimal.valueOf(20));
         gameResult.setUser(user);
         gameResult.setBets(Arrays.asList(bet));

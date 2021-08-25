@@ -1,7 +1,7 @@
 package com.betting.bettinggameapp.casino;
 
 public class Roulette {
-    private Slot[] slots;
+    private final Slot[] slots;
 
     public Roulette() {
         slots = new Slot[]{

@@ -1,9 +1,7 @@
 package com.betting.bettinggameapp.controller;
 
 import com.betting.bettinggameapp.dto.UserDto;
-import com.betting.bettinggameapp.entity.AccountState;
 import com.betting.bettinggameapp.entity.User;
-import com.betting.bettinggameapp.repository.AccountStateRepository;
 import com.betting.bettinggameapp.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -45,13 +43,10 @@ public class UserControllerTest {
     @MockBean
     private UserRepository userRepository;
 
-    @MockBean
-    private AccountStateRepository accountStateRepository;
-
     @Test
     void findUserByIdTest() throws Exception {
         User user = new User();
-        user.setId(1);
+        user.setId(1L);
         user.setFirstName(FIRST_NAME);
         user.setLastName(LAST_NAME);
         user.setNickname(NICKNAME);
@@ -72,7 +67,7 @@ public class UserControllerTest {
     @Test
     void createUserTest() throws Exception {
         User user = new User();
-        user.setId(1);
+        user.setId(1L);
         user.setFirstName(FIRST_NAME);
         user.setLastName(LAST_NAME);
         user.setNickname(NICKNAME);

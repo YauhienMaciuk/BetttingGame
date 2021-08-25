@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Bet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
@@ -33,11 +33,11 @@ public class Bet {
     @NotNull
     private Boolean freeBet;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -95,5 +95,21 @@ public class Bet {
 
     public void setFreeBet(Boolean freeBet) {
         this.freeBet = freeBet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Bet)) {
+            return false;
+        }
+        return id != null && id.equals(((Bet) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

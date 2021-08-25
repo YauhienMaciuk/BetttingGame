@@ -26,7 +26,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -122,8 +121,8 @@ public class BetServiceImpl implements BetService {
         RoundResult roundResult = playRound(gameContext, user);
 
         BigDecimal winAmount = roundResult.getWinAmount();
-        List<Bet> placedBets = new ArrayList<>();
-        placedBets.add(roundResult.getBet());
+        GameResult gameResult = new GameResult();
+        gameResult.addBet(roundResult.getBet());
 
         while (roundResult.isGivenFreeBet()) {
             LOGGER.info(String.format("Since the user with id = %s won the free bet a new round will be played",
@@ -131,11 +130,9 @@ public class BetServiceImpl implements BetService {
             gameContext.setFreeBet(true);
             roundResult = playRound(gameContext, user);
             winAmount = winAmount.add(roundResult.getWinAmount());
-            placedBets.add(roundResult.getBet());
+            gameResult.addBet(roundResult.getBet());
         }
 
-        GameResult gameResult = new GameResult();
-        gameResult.setBets(placedBets);
         gameResult.setWinAmount(winAmount);
         gameResult.setUser(user);
 
@@ -153,8 +150,6 @@ public class BetServiceImpl implements BetService {
         bet.setFreeBet(gameContext.isFreeBet());
         bet.setCreatedDateTime(LocalDateTime.now());
         bet.setPlayedSlot(roundResult.getPlayedSlot());
-
-        bet = createBet(bet);
 
         LOGGER.info(String.format("The bet was played with roundResult %s", roundResult));
 

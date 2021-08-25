@@ -25,7 +25,7 @@ public class AccountStateController {
                             schema = @Schema(implementation = AccountStateDto.class))}),
             @ApiResponse(responseCode = "404", description = "Could not find the AccountState by userId", content = @Content)
     })
-    @GetMapping("/user/{userId}/account-state")
+    @GetMapping("/users/{userId}/account-states")
     public AccountStateDto findAccountState(@PathVariable Long userId) {
         return accountStateService.findAccountStateDtoByUserId(userId);
     }

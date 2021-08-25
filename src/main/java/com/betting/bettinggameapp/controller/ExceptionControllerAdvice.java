@@ -10,11 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
 public class ExceptionControllerAdvice {
@@ -43,6 +45,18 @@ public class ExceptionControllerAdvice {
         bindingResult.getFieldErrors().forEach(fieldError -> errorDetails.add(fieldError.getDefaultMessage()));
 
         return new ResponseEntity<>(errorDetails, createHttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MissingPathVariableException.class)
+    public ResponseEntity<String> handleMissingPathVariableException(MissingPathVariableException e) {
+        LOGGER.debug(e.getMessage(), e.getCause());
+        return new ResponseEntity<>(e.getMessage(), createHttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<String> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+        LOGGER.debug(e.getMessage(), e.getCause());
+        return new ResponseEntity<>(e.getMessage(), createHttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)

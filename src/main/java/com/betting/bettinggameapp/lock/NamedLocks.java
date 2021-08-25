@@ -7,17 +7,13 @@ import java.util.concurrent.locks.ReentrantLock;
 public class NamedLocks<K> {
 
     private final ReentrantLock activateLock = new ReentrantLock();
-
-    private NamedLock unusedLocks = null;
-
     private final Map<K, NamedLock> activeLocks = new HashMap<>();
-
+    private NamedLock unusedLocks = null;
     private boolean fair;
 
     public NamedLocks() {
         this(false);
     }
-
 
     public NamedLocks(boolean fair) {
         this.fair = fair;

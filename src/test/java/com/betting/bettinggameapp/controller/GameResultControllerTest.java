@@ -66,7 +66,7 @@ public class GameResultControllerTest {
         Mockito.when(gameResultRepository.findAllByUserId(user.getId())).thenReturn(gameResults);
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/user/" + user.getId() + "/game-result")
+                .get("/users/" + user.getId() + "/game-results")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").exists())

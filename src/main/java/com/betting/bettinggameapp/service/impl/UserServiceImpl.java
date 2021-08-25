@@ -35,8 +35,6 @@ public class UserServiceImpl implements UserService {
                 .withNickname(userDto.getNickname())
                 .build();
 
-        user = userRepository.save(user);
-
         accountStateService.createAccountState(user);
 
         return user;

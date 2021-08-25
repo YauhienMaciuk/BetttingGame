@@ -54,7 +54,7 @@ public class UserControllerTest {
         Mockito.when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/user/" + user.getId())
+                .get("/users/" + user.getId())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").exists())
@@ -79,7 +79,7 @@ public class UserControllerTest {
 
         Mockito.when(userRepository.save(any())).thenReturn(user);
 
-        mockMvc.perform(post("/user")
+        mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userDto)))
@@ -97,7 +97,7 @@ public class UserControllerTest {
         userDto.setFirstName(FIRST_NAME);
         userDto.setLastName(LAST_NAME);
 
-        mockMvc.perform(post("/user")
+        mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isBadRequest())
@@ -111,7 +111,7 @@ public class UserControllerTest {
         userDto.setLastName(LAST_NAME);
         userDto.setNickname(NICKNAME);
 
-        mockMvc.perform(post("/user")
+        mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isBadRequest())
@@ -125,7 +125,7 @@ public class UserControllerTest {
         userDto.setFirstName(FIRST_NAME);
         userDto.setNickname(NICKNAME);
 
-        mockMvc.perform(post("/user")
+        mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isBadRequest())
@@ -140,7 +140,7 @@ public class UserControllerTest {
         userDto.setLastName(LAST_NAME);
         userDto.setNickname(NICKNAME);
 
-        mockMvc.perform(post("/user")
+        mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isBadRequest())
@@ -155,7 +155,7 @@ public class UserControllerTest {
         userDto.setLastName(STRING_WITH_30_CHARACTERS);
         userDto.setNickname(NICKNAME);
 
-        mockMvc.perform(post("/user")
+        mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isBadRequest())
@@ -170,7 +170,7 @@ public class UserControllerTest {
         userDto.setLastName(LAST_NAME);
         userDto.setNickname(STRING_WITH_30_CHARACTERS);
 
-        mockMvc.perform(post("/user")
+        mockMvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(userDto)))
                 .andExpect(status().isBadRequest())

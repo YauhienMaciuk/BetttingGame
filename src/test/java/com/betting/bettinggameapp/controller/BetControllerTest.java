@@ -84,7 +84,7 @@ public class BetControllerTest {
         Mockito.when(betRepository.findAllByUserId(user.getId())).thenReturn(bets);
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/user/" + user.getId() + "/bet")
+                .get("/users/" + user.getId() + "/bets")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").exists())
@@ -143,7 +143,7 @@ public class BetControllerTest {
         Mockito.when(gameResultRepository.save(any())).thenReturn(gameResult);
 
         //then
-        mockMvc.perform(post("/bet")
+        mockMvc.perform(post("/bets")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(betDto)))

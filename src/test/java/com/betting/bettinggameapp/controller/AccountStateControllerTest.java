@@ -48,7 +48,7 @@ public class AccountStateControllerTest {
         Mockito.when(accountStateRepository.findByUserId(user.getId())).thenReturn(accountState);
 
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/user/" + user.getId() + "/account-state")
+                .get("/users/" + user.getId() + "/account-states")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").exists())

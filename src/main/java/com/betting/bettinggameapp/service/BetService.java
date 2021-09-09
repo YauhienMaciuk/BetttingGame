@@ -12,6 +12,6 @@ public interface BetService {
 
     List<BetDto> findAllBetsByUserId(long userId);
 
-    GameResultDto placeBet(BetDto betDto);
+    GameResultDto placeBet(BetDto betDto, Long userId);
 
 }

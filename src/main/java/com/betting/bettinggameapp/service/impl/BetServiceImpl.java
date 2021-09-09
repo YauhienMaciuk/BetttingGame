@@ -67,10 +67,10 @@ public class BetServiceImpl implements BetService {
     }
 
     @Override
-    public GameResultDto placeBet(BetDto betDto) {
+    public GameResultDto placeBet(BetDto betDto, Long userId) {
         LOGGER.info(String.format("User with id = %s is placing the bet = %s", betDto.getUserId(), betDto));
-        try (Unlockable lock = USER_LOCKS.lock(betDto.getUserId())) {
-            AccountState accountState = accountStateService.findByUserId(betDto.getUserId());
+        try (Unlockable lock = USER_LOCKS.lock(userId)) {
+            AccountState accountState = accountStateService.findByUserId(userId);
             User user = (User) Hibernate.unproxy(accountState.getUser());
 
             BigDecimal betAmount = betDto.getBetAmount();

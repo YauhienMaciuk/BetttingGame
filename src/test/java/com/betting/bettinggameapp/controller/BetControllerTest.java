@@ -143,7 +143,7 @@ public class BetControllerTest {
         Mockito.when(gameResultRepository.save(any())).thenReturn(gameResult);
 
         //then
-        mockMvc.perform(post("/bets")
+        mockMvc.perform(post("/users/" + user.getId() + "/bets")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(betDto)))

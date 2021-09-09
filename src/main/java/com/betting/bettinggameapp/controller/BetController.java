@@ -42,8 +42,8 @@ public class BetController {
                             schema = @Schema(implementation = GameResultDto.class))}),
             @ApiResponse(responseCode = "400", description = "The request body contains invalid data", content = @Content)
     })
-    @PostMapping("/bets")
-    public GameResultDto placeBet(@Valid @RequestBody BetDto betDto) {
-        return betService.placeBet(betDto);
+    @PostMapping("/users/{userId}/bets")
+    public GameResultDto placeBet(@Valid @RequestBody BetDto betDto, @PathVariable Long userId) {
+        return betService.placeBet(betDto, userId);
     }
 }
